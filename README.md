@@ -10,7 +10,7 @@ See the sample project for more insight.
 Usage
 =====
 
-Add `TSUniformGrid` and `TSUniformGrid` to your Xcode project.
+Add `TSUniformGrid` and `TSUniformStack` to your Xcode project.
  
 A grid is constructed from rows. Subviews are then added to the rows (instances of `TSUniformStack`).
 
