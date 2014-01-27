@@ -3,6 +3,8 @@ TSUniformGrid
 
 `TSUniformGrid` is a simple uniform grid control for Cocoa. In many ways the view behaves like `NSStackView` except that all subviews are laid out to be a uniform size, both horizontally and vertically.
 
+![TSUniformGrid screenshot](./docs/images/TSUniformGrid.png)
+
 The grid is implemented as a subclass of a vertically configured `TSUniformStack`. The superclass can be used individually in situations where a simple uniform view stack is required.
 
 See the sample project for more insight.
@@ -12,7 +14,7 @@ Usage
 
 Add `TSUniformGrid` and `TSUniformStack` to your Xcode project.
  
-A grid is constructed from rows. Subviews are then added to the rows (instances of `TSUniformStack`).
+A grid is constructed from rows. Subviews are then added to the rows (instances of `TSUniformStack`). Rows may or may not have the same number of subviews. If they do then a true uniform grid will result.
 
 	#import "TSUniformGrid.h"
 
