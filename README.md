@@ -1,7 +1,7 @@
 TSUniformGrid
 ============
 
-`TSUniformGrid` is a simple uniform grid control for Cocoa. In many ways the view behaves like `NSStackView` except that all subviews are laid out to be a uniform size. 
+`TSUniformGrid` is a simple uniform grid control for Cocoa. In many ways the view behaves like `NSStackView` except that all subviews are laid out to be a uniform size, both horizontally and vertically.
 
 The grid is implemented as a subclass of a vertically configured `TSUniformStack`. The superclass can be used individually in situations where a simple uniform view stack is required.
 
