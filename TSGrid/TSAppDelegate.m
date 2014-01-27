@@ -8,11 +8,36 @@
 
 #import "TSAppDelegate.h"
 
+
 @implementation TSAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Insert code here to initialize your application
+    
+    NSMutableArray *subviews = [NSMutableArray arrayWithCapacity:52];
+    for (int i = 0; i < 52; i++) {
+        [subviews addObject:[NSButton new]];
+    }
+    [self.uniformGrid addNewRowWithSubviews:subviews];
+    
+    [subviews removeAllObjects];
+    for (int i = 0; i < 26; i++) {
+        [subviews addObject:[NSButton new]];
+    }
+    [self.uniformGrid addNewRowWithSubviews:subviews];
+
+    [subviews removeAllObjects];
+    for (int i = 0; i < 13; i++) {
+        [subviews addObject:[NSButton new]];
+    }
+    [self.uniformGrid addNewRowWithSubviews:subviews];
+
+    [subviews removeAllObjects];
+    for (int i = 0; i < 12; i++) {
+        [subviews addObject:[NSButton new]];
+    }
+    [self.uniformGrid addNewRowWithSubviews:subviews];
+
 }
 
 @end
