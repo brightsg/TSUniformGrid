@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "ABA9A3AC1896774F008794AC"
-               BuildableName = "TSGrid.app"
+               BuildableName = "TSUniformGrid.app"
                BlueprintName = "TSUniformGrid"
                ReferencedContainer = "container:TSUniformGrid.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "ABA9A3CD1896774F008794AC"
-               BuildableName = "TSGridTests.xctest"
+               BuildableName = "TSUniformGridTests.xctest"
                BlueprintName = "TSUniformGridTests"
                ReferencedContainer = "container:TSUniformGrid.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ABA9A3AC1896774F008794AC"
-            BuildableName = "TSGrid.app"
+            BuildableName = "TSUniformGrid.app"
             BlueprintName = "TSUniformGrid"
             ReferencedContainer = "container:TSUniformGrid.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ABA9A3AC1896774F008794AC"
-            BuildableName = "TSGrid.app"
+            BuildableName = "TSUniformGrid.app"
             BlueprintName = "TSUniformGrid"
             ReferencedContainer = "container:TSUniformGrid.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ABA9A3AC1896774F008794AC"
-            BuildableName = "TSGrid.app"
+            BuildableName = "TSUniformGrid.app"
             BlueprintName = "TSUniformGrid"
             ReferencedContainer = "container:TSUniformGrid.xcodeproj">
          </BuildableReference>

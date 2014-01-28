@@ -26,6 +26,13 @@
 
 /*!
  
+ Create a new stack containing subviews of the given type and quantity.
+ 
+ */
++ (TSUniformStack *)uniformStackWithSubviewsOfType:(Class)klass count:(NSInteger)count;
+
+/*!
+ 
  Add a view to the stack.
  
  */
@@ -38,6 +45,12 @@
  */
 - (void)addSubviews:(NSArray *)views;
 
+/*!
+ 
+ Add subviews of the given type and quantity.
+ 
+ */
+- (void)addSubviewsOfType:(Class)klass count:(NSInteger)count;
 
 /*!
  

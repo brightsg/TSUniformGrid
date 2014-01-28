@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>BD2D7C22-8C3A-4355-B98C-C780325AC6C6</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TSUniformGrid</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D9F7E433-DEC0-4A2B-94E4-35E13BFDF674</key>
+		<string>ssh://github.com/ThesaurusSoftware/TSUniformGrid.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TSUniformGrid.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D9F7E433-DEC0-4A2B-94E4-35E13BFDF674</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/ThesaurusSoftware/BrightPay.OSX.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D9F7E433-DEC0-4A2B-94E4-35E13BFDF674</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D9F7E433-DEC0-4A2B-94E4-35E13BFDF674</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TSUniformGrid</string>
+		</dict>
+	</array>
+</dict>
+</plist>

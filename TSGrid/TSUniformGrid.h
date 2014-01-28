@@ -39,6 +39,20 @@
  */
 - (TSUniformStack *)addNewRowWithSubviews:(NSArray *)views;
 
+/*!
+ 
+ Create a new row stack containing views of the given type and quantity. Does not add it to the grid.
+ 
+ */
+- (TSUniformStack *)newRowWithSubviewsOfType:(Class)klass count:(NSInteger)count;
+
+/*!
+ 
+ Adds a new row stack containing views of the given type and quantity to the botom of the grid.
+ 
+ */
+- (TSUniformStack *)addNewRowWithSubviewsOfType:(Class)klass count:(NSInteger)count;
+
 /*
  
  The number of rows in the grid.

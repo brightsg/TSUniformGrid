@@ -87,5 +87,28 @@
     return stack;
 }
 
+- (TSUniformStack *)newRowWithSubviewsOfType:(Class)klass count:(NSInteger)count
+{
+    TSUniformStack *stack = [TSUniformStack uniformStackWithSubviewsOfType:klass count:count];
+    
+    return stack;
+}
 
+- (TSUniformStack *)addNewRowWithSubviewsOfType:(Class)klass count:(NSInteger)count
+{
+    TSUniformStack *stack = [self newRowWithSubviewsOfType:klass count:count];
+    [self addSubview:stack];
+
+    return stack;
+}
+
+- (BOOL)isOpaque
+{
+    return YES;
+}
+- (void)drawRect:(NSRect)dirtyRect
+{
+    [[NSColor whiteColor] set];
+    NSRectFill(dirtyRect);
+}
 @end

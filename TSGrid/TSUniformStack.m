@@ -24,6 +24,21 @@
     return stack;
 }
 
++ (TSUniformStack *)uniformStackWithSubviewsOfType:(Class)klass count:(NSInteger)count
+{
+    NSArray *views = [self arrayOfViewsOfType:klass count:count];
+    TSUniformStack* stack = [self uniformStackWithSubviews:views];
+    return stack;
+}
+
++ (NSArray *)arrayOfViewsOfType:(Class)klass count:(NSInteger)count
+{
+    NSMutableArray *views = [NSMutableArray arrayWithCapacity:count];
+    for (NSInteger i = 0; i < count; i++) {
+        [views addObject:[[klass alloc] initWithFrame:NSMakeRect(0,0, 1, 1)]];
+    }
+    return views;
+}
 #pragma mark -
 #pragma mark Setup
 
@@ -60,6 +75,12 @@
 
 #pragma mark -
 #pragma mark Subviews
+
+- (void)addSubviewsOfType:(Class)klass count:(NSInteger)count
+{
+    NSArray *views = [[self class] arrayOfViewsOfType:klass count:count];
+    [self addSubviews:views];
+}
 
 - (void)addSubviews:(NSArray *)views
 {

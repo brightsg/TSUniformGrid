@@ -13,31 +13,31 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    
+    // add a row of buttons
     NSMutableArray *subviews = [NSMutableArray arrayWithCapacity:52];
     for (int i = 0; i < 52; i++) {
         [subviews addObject:[NSButton new]];
     }
     [self.uniformGrid addNewRowWithSubviews:subviews];
     
+    // add another
     [subviews removeAllObjects];
     for (int i = 0; i < 26; i++) {
         [subviews addObject:[NSButton new]];
     }
     [self.uniformGrid addNewRowWithSubviews:subviews];
 
+    // generate a row of views of a given type
     [subviews removeAllObjects];
-    for (int i = 0; i < 13; i++) {
-        [subviews addObject:[NSButton new]];
-    }
-    [self.uniformGrid addNewRowWithSubviews:subviews];
+    [self.uniformGrid addNewRowWithSubviewsOfType:[NSButton class] count:13];
 
+    // and again
     [subviews removeAllObjects];
-    for (int i = 0; i < 12; i++) {
-        [subviews addObject:[NSButton new]];
-    }
-    [self.uniformGrid addNewRowWithSubviews:subviews];
+    TSUniformStack *row = [self.uniformGrid addNewRowWithSubviewsOfType:[NSButton class] count:13];
 
+    // now add a view to the end of the row and remove the first subview
+    [row addSubview:[NSButton new]];
+    [row removeSubview:[row firstSubview]];
 }
 
 @end
