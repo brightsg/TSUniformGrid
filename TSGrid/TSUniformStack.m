@@ -97,6 +97,12 @@
 
 - (void)addSubview:(NSView *)view withLayout:(BOOL)doLayout
 {
+    // NOTE: When doing manual layout using setFrame it is important to ensure that -translatesAutoresizingMaskIntoConstraints
+    // returns YES for the manually placed views. If this is not ensured than the layout will misbehave.
+    //
+    // ref: https://developer.apple.com/library/ios/documentation/userexperience/conceptual/AutolayoutPG/AdoptingAutoLayout/AdoptingAutoLayout.html#//apple_ref/doc/uid/TP40010853-CH15-SW1
+    view.translatesAutoresizingMaskIntoConstraints = YES;
+    
     [self.stackViews addObject:view];
     
     [super addSubview:view];
@@ -158,11 +164,6 @@
 {
     // the arithmetic involved in setting out the view frames manually is simpler
     // than computing the neccessary Auto Layout constraints.
-    
-    // NOTE: When doing custom layout using setFrame it is important to ensure that -translatesAutoresizingMaskIntoConstraints
-    // returns YES for the manually placed views. If this is not ensured than the layout will misbehave.
-    //
-    // ref: https://developer.apple.com/library/ios/documentation/userexperience/conceptual/AutolayoutPG/AdoptingAutoLayout/AdoptingAutoLayout.html#//apple_ref/doc/uid/TP40010853-CH15-SW1
     
     NSSize size = self.bounds.size;
     CGFloat x = 0;
