@@ -40,6 +40,37 @@ A grid is constructed from rows. Subviews are then added to the rows (instances 
 	// add a subview to the end of a row
     [row addSubview:[NSButton new]];
 
+Dynamic content
+===============
+
+It may be desirable to modify the grid content as the view is resized. So:
+
+    #pragma mark -
+    #pragma mark #import TSUniformGridDelegate
+
+    - (void)uniformGridWillResize:(TSUniformGrid *)uniformGrid toSize:(NSSize)newSize
+    {
+        if (newSize.width == 0 || newSize.height == 0) return;
+        
+        CGFloat minAverageWidth = 180;
+        CGFloat minAverageHeight = 160;
+
+        // calculate the max number of rows and columns that can be displayed
+        NSInteger maxColCount = (NSInteger)floor(newSize.width / minAverageWidth);
+        if (maxColCount > MAX_CALENDAR_COLS) maxColCount = MAX_CALENDAR_COLS;
+        if (maxColCount < 1) maxColCount = 1;
+    
+        NSInteger maxRowCount = (NSInteger)floor(newSize.height / minAverageHeight);
+        if (maxRowCount > MAX_CALENDAR_ROWS) maxRowCount = MAX_CALENDAR_ROWS;
+        if (maxRowCount < 1) maxRowCount = 1;
+    
+        // update the display if required
+        if (maxRowCount != uniformGrid.rowCount | maxColCount != uniformGrid.columnCountInFirstRow ) {
+            [self updateGrid:0 rows:maxRowCount columns:maxColCount];
+        }
+    }
+
+
 Auto Layout
 ===========
 
