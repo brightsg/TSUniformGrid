@@ -8,14 +8,44 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class TSUniformStack;
+
+@protocol TSUniformStackDelegate <NSObject>
+
+@required
+
+@optional
+
+/*!
+ 
+ Delegates can change the stack subview content prior to resizing to a new size.
+ 
+ */
+- (void)uniformStackWillResize:(TSUniformStack *)uniformStack toSize:(NSSize)newSize;
+@end
+    
 @interface TSUniformStack : NSView
+
+/*!
+ 
+ Layout is suspended.
+ 
+ */
+@property (nonatomic) BOOL layoutSuspended;
+
+/*!
+ 
+  Stack delegate
+ 
+ */
+@property (weak, nonatomic) id <TSUniformStackDelegate> delegate;
 
 /*!
  
  Set the stack's orientation.
  
  */
-@property  (nonatomic) NSUserInterfaceLayoutOrientation orientation;
+@property (nonatomic) NSUserInterfaceLayoutOrientation orientation;
 
 /*!
  
@@ -82,9 +112,26 @@
 
 /*!
  
+ Get the laset subview in the stack.
+ 
+ */
+- (id)lastSubview;
+
+/*!
+ 
  The number of subviews in the stack;
  
  */
 - (NSInteger)subviewCount;
+
+
+/*!
+ 
+ The average uniform dimension for the given view frame size. 
+ For a horizontal stack this will be a width.
+ For a vertical stack it will be a height.
+ 
+ */
+- (CGFloat)averageUniformDimensionForSize:(NSSize)size;
 
 @end

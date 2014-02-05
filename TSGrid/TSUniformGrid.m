@@ -30,6 +30,13 @@
     return self.subviewCount;
 }
 
+- (NSInteger)columnCountInFirstRow
+{
+    NSInteger columnCount = [[self firstRow] subviewCount];
+    
+    return columnCount;
+}
+
 - (NSInteger)maxColumnCount
 {
     NSInteger columnCount = 0;
@@ -52,6 +59,30 @@
         columnCount = 0;
     }
     return columnCount;
+}
+
+- (id)firstSubview
+{
+    NSView *view = [self firstRow];
+    if ([view respondsToSelector:@selector(firstSubview)]) {
+        view = [view performSelector:@selector(firstSubview)];
+    }
+    return view;
+}
+
+- (id)lastSubview
+{
+    NSView *view = [self lastRow];
+    if ([view respondsToSelector:@selector(lastSubview)]) {
+        view = [view performSelector:@selector(lastSubview)];
+    }
+    
+    return view;
+}
+
+- (id<TSUniformGridDelegate>)delegate
+{
+    return (id<TSUniformGridDelegate>)[super delegate];
 }
 
 #pragma mark -
@@ -102,13 +133,31 @@
     return stack;
 }
 
-- (BOOL)isOpaque
+- (TSUniformStack *)firstRow
 {
-    return YES;
+    TSUniformStack *row = [super firstSubview];
+    return row;
 }
-- (void)drawRect:(NSRect)dirtyRect
+
+- (TSUniformStack *)lastRow
 {
-    [[NSColor whiteColor] set];
-    NSRectFill(dirtyRect);
+    TSUniformStack *view = [super lastSubview];
+    return view;
+}
+
+#pragma mark -
+#pragma mark Layout
+
+- (void)resizeSubviewsWithOldSize:(NSSize)oldSize
+{
+    // when doing bulk updates we may suspend layout
+    if (self.layoutSuspended) return;
+    
+    // tell the delegate that the grid will resize
+    if ([self.delegate respondsToSelector:@selector(uniformGridWillResize:toSize:)]) {
+        [(id)self.delegate uniformGridWillResize:self toSize:self.bounds.size];
+    }
+    
+    [super resizeSubviewsWithOldSize:oldSize];
 }
 @end

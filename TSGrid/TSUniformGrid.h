@@ -8,6 +8,22 @@
 
 #import "TSUniformStack.h"
 
+@class TSUniformGrid;
+
+@protocol TSUniformGridDelegate <TSUniformStackDelegate>
+
+@required
+
+@optional
+
+/*!
+ 
+ Delegates can change the grid subview content prior to resizing to a new size.
+ 
+ */
+- (void)uniformGridWillResize:(TSUniformGrid *)uniformGrid toSize:(NSSize)newSize;
+@end
+
 @interface TSUniformGrid : TSUniformStack
 
 
@@ -53,12 +69,35 @@
  */
 - (TSUniformStack *)addNewRowWithSubviewsOfType:(Class)klass count:(NSInteger)count;
 
-/*
+
+/*!
+ 
+ First row in the grid.
+ 
+ */
+- (TSUniformStack *)firstRow;
+
+/*!
+ 
+ Last row in the grid.
+ 
+ */
+- (TSUniformStack *)lastRow;
+
+/*!
  
  The number of rows in the grid.
  
  */
 - (NSInteger)rowCount;
+
+
+/*!
+ 
+ The column count in the first row.
+ 
+ */
+- (NSInteger)columnCountInFirstRow;
 
 /*
  

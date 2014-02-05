@@ -73,6 +73,13 @@
     [self doStackLayout];
 }
 
+- (void)setLayoutSuspended:(BOOL)layoutSuspended
+{
+    _layoutSuspended = layoutSuspended;
+    if (!_layoutSuspended) {
+        [self doStackLayout];
+    }
+}
 #pragma mark -
 #pragma mark Subviews
 
@@ -103,8 +110,12 @@
     // ref: https://developer.apple.com/library/ios/documentation/userexperience/conceptual/AutolayoutPG/AdoptingAutoLayout/AdoptingAutoLayout.html#//apple_ref/doc/uid/TP40010853-CH15-SW1
     view.translatesAutoresizingMaskIntoConstraints = YES;
     
-    [self.stackViews addObject:view];
+    // if adding another stack as a subview then assign the delegate
+    if ([view isKindOfClass:[TSUniformStack class]]) {
+        [(id)view setDelegate:self.delegate];
+    }
     
+    [self.stackViews addObject:view];
     [super addSubview:view];
     
     if (doLayout) {
@@ -126,7 +137,7 @@
 
 - (void)removeAllSubviews
 {
-    for (NSView *view in self.stackViews) {
+    for (NSView *view in [self.stackViews copy]) {
         [self removeSubview:view withLayout:NO];
     }
     [self doStackLayout];
@@ -162,17 +173,30 @@
 
 - (void)resizeSubviewsWithOldSize:(NSSize)oldSize
 {
+    // when doing bulk updates we may suspend layout
+    if (self.layoutSuspended) return;
+        
     // the arithmetic involved in setting out the view frames manually is simpler
     // than computing the neccessary Auto Layout constraints.
-    
     NSSize size = self.bounds.size;
     CGFloat x = 0;
     CGFloat y = 0;
     
+    // average uniform dimension
+    CGFloat avgDimension = [self averageUniformDimensionForSize:size];
+    if (avgDimension == 0) {
+        return;
+    }
+    
+    // tell the delegate that the stack will resize.
+    if ([self.delegate respondsToSelector:@selector(uniformStackWillResize:toSize:)]) {
+        [self.delegate uniformStackWillResize:self toSize:size];
+    }
+
     if (self.orientation == NSUserInterfaceLayoutOrientationHorizontal) {
         
         CGFloat height = size.height;
-        CGFloat avgWidth = (size.width)/self.subviewCount;
+        CGFloat avgWidth = avgDimension;
         NSInteger col = 0;
 
         for (NSView *view in self.stackViews) {
@@ -189,7 +213,7 @@
     } else {
 
         CGFloat width = size.width;
-        CGFloat avgHeight = (size.height)/self.subviewCount;
+        CGFloat avgHeight = avgDimension;
         NSInteger row = 0;
 
         for (NSView *view in self.stackViews) {
@@ -204,4 +228,36 @@
 
     }
 }
+
+- (CGFloat)averageUniformDimensionForSize:(NSSize)size
+{
+    CGFloat avgDimension = 0.;
+    
+    if (self.subviewCount > 0) {
+        
+        if (self.orientation == NSUserInterfaceLayoutOrientationHorizontal) {
+            avgDimension = (size.width)/self.subviewCount;
+        } else {
+            avgDimension = (size.height)/self.subviewCount;
+        }
+    }
+    
+    return avgDimension;
+}
+
+#pragma mark -
+#pragma mark Drawing support
+
+- (BOOL)isOpaque
+{
+    // opaque views get a drawing boost by not not having to send update message to their superview
+    return YES;
+}
+
+- (void)drawRect:(NSRect)dirtyRect
+{
+    [[NSColor whiteColor] set];
+    NSRectFill(dirtyRect);
+}
+
 @end
