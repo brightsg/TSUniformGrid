@@ -43,10 +43,10 @@ A grid is constructed from rows. Subviews are then added to the rows (instances 
 Dynamic content
 ===============
 
-It may be desirable to modify the grid content as the view is resized. So:
+It may be desirable to modify the grid content as the view is resized, say to add or remove subviews. The -`uniformGridWillResize:toSize:` delegate method can be used to repopulate the view prior to resizing the layout.
 
     #pragma mark -
-    #pragma mark #import TSUniformGridDelegate
+    #pragma mark TSUniformGridDelegate
 
     - (void)uniformGridWillResize:(TSUniformGrid *)uniformGrid toSize:(NSSize)newSize
     {
@@ -66,7 +66,13 @@ It may be desirable to modify the grid content as the view is resized. So:
     
         // update the display if required
         if (maxRowCount != uniformGrid.rowCount | maxColCount != uniformGrid.columnCountInFirstRow ) {
+
+            // suspend layout during bulk update
+            self.uniformGrid.layoutSuspended = YES;
+
             [self updateGrid:0 rows:maxRowCount columns:maxColCount];
+
+            self.uniformGrid.layoutSuspended = NO;
         }
     }
 
