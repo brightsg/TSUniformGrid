@@ -61,7 +61,7 @@
     return columnCount;
 }
 
-- (id)firstSubview
+- (id)firstGridSubview
 {
     NSView *view = [self firstRow];
     if ([view respondsToSelector:@selector(firstSubview)]) {
@@ -70,7 +70,7 @@
     return view;
 }
 
-- (id)lastSubview
+- (id)lastGridSubview
 {
     NSView *view = [self lastRow];
     if ([view respondsToSelector:@selector(lastSubview)]) {
@@ -78,6 +78,16 @@
     }
     
     return view;
+}
+
+- (NSArray *)gridSubviews
+{
+    NSMutableArray *allSubviews = [NSMutableArray arrayWithCapacity:10];
+    for (NSView *view in self.subviews) {
+        [allSubviews addObjectsFromArray:[view subviews]];
+    }
+    
+    return allSubviews;
 }
 
 - (id<TSUniformGridDelegate>)delegate

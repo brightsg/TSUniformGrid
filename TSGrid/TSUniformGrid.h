@@ -99,18 +99,39 @@
  */
 - (NSInteger)columnCountInFirstRow;
 
-/*
+/*!
  
  The maximum number of columns in the grid. This equates to the maximum number of views in any row.
  
  */
 - (NSInteger)maxColumnCount;
 
-/*
+/*!
  
  The minimum number of columns in the grid. This equates to the minimum number of views in any row.
  
  */
 - (NSInteger)minColumnCount;
+
+/*!
+ 
+ The first subview in the grid
+ 
+ */
+- (id)firstGridSubview;
+
+/*!
+ 
+ The last subview in the grid
+ 
+ */
+- (id)lastGridSubview;
+
+/*!
+ 
+ All grid subviews.
+ 
+ */
+- (NSArray *)gridSubviews;
 
 @end
