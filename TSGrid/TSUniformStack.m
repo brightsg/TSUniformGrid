@@ -245,19 +245,4 @@
     return avgDimension;
 }
 
-#pragma mark -
-#pragma mark Drawing support
-
-- (BOOL)isOpaque
-{
-    // opaque views get a drawing boost by not not having to send update message to their superview
-    return YES;
-}
-
-- (void)drawRect:(NSRect)dirtyRect
-{
-    [[NSColor whiteColor] set];
-    NSRectFill(dirtyRect);
-}
-
 @end
