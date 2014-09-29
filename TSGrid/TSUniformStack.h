@@ -112,7 +112,7 @@
 
 /*!
  
- Get the laset subview in the stack.
+ Get the last subview in the stack.
  
  */
 - (id)lastSubview;
