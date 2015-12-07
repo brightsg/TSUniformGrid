@@ -112,7 +112,7 @@
     
     // if adding another stack as a subview then assign the delegate
     if ([view isKindOfClass:[TSUniformStack class]]) {
-        [(id)view setDelegate:self.delegate];
+        [(TSUniformStack *)view setDelegate:self.delegate];
     }
     
     [self.stackViews addObject:view];
